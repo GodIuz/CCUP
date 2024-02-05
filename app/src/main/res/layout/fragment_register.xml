@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterFragment">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="210dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/sign_up"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="296dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/enter_your_username"
+        android:background="@drawable/edittext_border"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="296dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no"
+        android:text="@string/enter_your_password"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="298dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no"
+        android:text="@string/confirm_your_password"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:background="@drawable/edittext_border"/>
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="294dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="date"
+        android:text="@string/enter_your_date_of_birth"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:text="@string/enter_your_email"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/parallelogram_button"
+        android:text="@string/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/already_have_an_account"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/LoginView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+        android:text="@string/login"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
