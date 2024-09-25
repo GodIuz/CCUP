@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CCUP</string>
+    <string name="company_check_up">Company Check Up</string>
+    <string name="your_personal_doctor_for_your_business">Your personal doctor for your business.</string>
+    <string name="app_logo">app_logo</string>
+    <string name="design_amp_develop_by_droid_genius_labs"><![CDATA[Design & Develop by Droid Genius Labs]]></string>
+    <string name="your_email">Your email</string>
+    <string name="yout_password">Yout password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account ?</string>
+    <string name="register">Register</string>
+</resources>
