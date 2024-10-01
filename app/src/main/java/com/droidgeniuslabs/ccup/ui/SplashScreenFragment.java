@@ -1,7 +1,10 @@
 package com.droidgeniuslabs.ccup.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.droidgeniuslabs.ccup.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreenFragment extends Fragment {
 
     private static final int SPLASH_DISPLAY_LENGTH = 3000;
@@ -40,7 +44,8 @@ public class SplashScreenFragment extends Fragment {
         textView.startAnimation(fadeIn);
         textView2.startAnimation(fadeIn);
         textView3.startAnimation(fadeIn);
-
+        NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_splashScreenFragment_to_loginFragment);
         return view;
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_rating"
+        android:icon="@drawable/ic_rating"
+        android:title="@string/rating_us" />
+    <item
+        android:id="@+id/nav_disable_ads"
+        android:icon="@drawable/ic_disable_ads"
+        android:title="@string/disable_ads" />
+    <item
+        android:id="@+id/nav_upgrade_pro"
+        android:icon="@drawable/ic_upgrade"
+        android:title="@string/upgrade_to_pro" />
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_about"
+        android:title="@string/about"/>
+</menu>

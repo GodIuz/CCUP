@@ -13,4 +13,25 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="don_t_have_an_account">Don\'t have an account ?</string>
     <string name="register">Register</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="email">Your email</string>
+    <string name="password">Your Password</string>
+    <string name="first_name">Your First name</string>
+    <string name="last_name">Your Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="your_date_of_birth">Your Date of birth</string>
+    <string name="or">OR</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="files">Files</string>
+    <string name="rating_us">Rating us</string>
+    <string name="upgrade_to_pro">Upgrade to PRO</string>
+    <string name="disable_ads">Disable ads</string>
+    <string name="about">About</string>
+    <string name="edit">Edit</string>
+    <string name="view">View</string>
+    <string name="facebook_app_id">3773695809514113</string>
+    <string name="fb_login_protocol_scheme">fb3773695809514113</string>
+    <string name="facebook_client_token">22b7f6bde224e4ed6d0efaa0dff54945</string>
 </resources>

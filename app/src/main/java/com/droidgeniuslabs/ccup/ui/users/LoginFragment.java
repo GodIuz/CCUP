@@ -2,6 +2,8 @@ package com.droidgeniuslabs.ccup.ui.users;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +12,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.droidgeniuslabs.ccup.HomeFragment;
-import com.droidgeniuslabs.ccup.R;
 import com.droidgeniuslabs.ccup.dbhelper.AutoCompleteHelper;
 import com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper;
 import com.droidgeniuslabs.ccup.dbhelper.SessionManager;
 import java.sql.SQLException;
+import com.droidgeniuslabs.ccup.R;
 
 
 public class LoginFragment extends Fragment {
@@ -38,7 +39,7 @@ public class LoginFragment extends Fragment {
         EditText editTextEmail = view.findViewById(R.id.editTextTextEmailAddress);
         EditText editTextPass = view.findViewById(R.id.editTextTextPassword);
         CheckBox rememberCheckbox = view.findViewById(R.id.checkBox);
-        TextView forgorPass = view.findViewById(R.id.textViewForgotRemember);
+        TextView forgotPass = view.findViewById(R.id.textViewForgotRemember);
         TextView register = view.findViewById(R.id.textViewRegister);
         Button buttonLogin = view.findViewById(R.id.buttonLogin);
 
@@ -55,19 +56,18 @@ public class LoginFragment extends Fragment {
         }
 
         buttonLogin.setOnClickListener(v -> {
-            String username = editTextEmail.getText().toString();
+            String email = editTextEmail.getText().toString();
             String password = editTextPass.getText().toString();
             boolean rememberMe = rememberCheckbox.isChecked();
 
             try {
-                if (databaseHelper.loginUser(username, password, rememberMe)) {
-                    sessionManager.saveLoginDetails(username, rememberMe);
-                    autoCompleteHelper.saveUsername(username);  // Save for autocomplete
+                if (databaseHelper.loginUser(email, password, rememberMe)) {
+                    sessionManager.saveLoginDetails(email, rememberMe);
+                    autoCompleteHelper.saveUsername(email);  // Save for autocomplete
+                    NavController navController = Navigation.findNavController(v);
+                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                    Toast.makeText(getContext(),"Welcome !", Toast.LENGTH_SHORT).show();
 
-                    // Redirect to home fragment
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_home, new HomeFragment())
-                            .commit();
                 } else {
                     Toast.makeText(getContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
                 }
@@ -76,6 +76,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_loginFragment_to_registerFragment);
+            }
+        });
         return view;
     }
 }
