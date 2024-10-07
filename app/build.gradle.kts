@@ -45,6 +45,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.google.firebase.auth)
     implementation(libs.play.services.auth)
+    implementation(libs.preference)
+    implementation(libs.firebase.inappmessaging)
     testImplementation(libs.junit)
     implementation(libs.facebook.facebook.android.sdk)
     androidTestImplementation(libs.ext.junit)

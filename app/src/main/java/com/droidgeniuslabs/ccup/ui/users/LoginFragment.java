@@ -1,5 +1,7 @@
 package com.droidgeniuslabs.ccup.ui.users;
 
+import static com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper.isConnectedToInternet;
+
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -58,21 +60,29 @@ public class LoginFragment extends Fragment {
         buttonLogin.setOnClickListener(v -> {
             String email = editTextEmail.getText().toString();
             String password = editTextPass.getText().toString();
-            boolean rememberMe = rememberCheckbox.isChecked();
-
-            try {
-                if (databaseHelper.loginUser(email, password, rememberMe)) {
-                    sessionManager.saveLoginDetails(email, rememberMe);
-                    autoCompleteHelper.saveUsername(email);  // Save for autocomplete
-                    NavController navController = Navigation.findNavController(v);
-                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
-                    Toast.makeText(getContext(),"Welcome !", Toast.LENGTH_SHORT).show();
-
+            if(isConnectedToInternet(requireContext())) {
+                if (!email.isEmpty()) {
+                    if (!password.isEmpty()) {
+                        try {
+                            boolean result = databaseHelper.loginUser(email, password);
+                            if (result) {
+                                Toast.makeText(getContext(), "Login Successfully!", Toast.LENGTH_SHORT).show();
+                                NavController navController = Navigation.findNavController(view);
+                                navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                            } else {
+                                Toast.makeText(getContext(), "Login Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        editTextPass.setError("Password is required");
+                    }
                 } else {
-                    Toast.makeText(getContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    editTextEmail.setError("Email is required");
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            }else{
+                Toast.makeText(requireContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
             }
         });
 

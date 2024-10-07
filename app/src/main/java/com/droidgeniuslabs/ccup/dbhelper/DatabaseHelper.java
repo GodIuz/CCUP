@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,19 +31,19 @@ public class DatabaseHelper {
         }
     }
 
-    public boolean registerUser(String firstname,String lastname,String email ,String password, Date dob) throws SQLException {
+    public boolean registerUser(String firstname,String lastname,String email ,String password) throws SQLException {
         String query = "INSERT INTO Users (Firstame,Lastname, Email, Password, Dob) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, firstname);
             statement.setString(2,lastname);
             statement.setString(3,email);
-            statement.setString(5, String.valueOf(dob));
+            statement.setString(4,password);
             return statement.executeUpdate() > 0;
         }
     }
 
-    public boolean loginUser(String email, String password, boolean rememberMe) throws SQLException {
+    public boolean loginUser(String email, String password) throws SQLException {
         String query = "SELECT PasswordHash FROM Users WHERE Username = ?";
         try (Connection connection = connect();
              PreparedStatement statement = connection.prepareStatement(query)) {

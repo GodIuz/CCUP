@@ -28,7 +28,6 @@
         android:hint="@string/email"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
-        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,6 @@
         android:hint="@string/password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +56,6 @@
         android:hint="@string/confirm_password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +69,7 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:text="@string/first_name"
+        android:hint="@string/first_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,26 +83,11 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:text="@string/last_name"
+        android:hint="@string/last_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="281dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/your_date_of_birth"
-        android:importantForAutofill="no"
-        android:inputType="date"
-        android:textColorHint="#546E7A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword" />
 
     <View
         android:id="@+id/divider2"
@@ -155,11 +137,11 @@
         android:id="@+id/buttonRegister"
         android:layout_width="254dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

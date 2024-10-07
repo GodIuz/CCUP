@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_active_iso"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.isologismos.ActiveIsoFragment">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/energitiko"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/editTextPagio"
+        android:layout_width="327dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="52dp"
+        android:hint="@string/pagio"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/editTextApothema"
+        android:layout_width="323dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="28dp"
+        android:hint="@string/apothema"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPagio" />
+
+    <EditText
+        android:id="@+id/editTextApaitiseis"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="44dp"
+        android:hint="@string/apaitiseis"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextApothema" />
+
+    <EditText
+        android:id="@+id/editTextDiathesima"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:hint="@string/diathesima"
+        android:inputType="numberDecimal"
+        android:maxLength="15"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextApaitiseis" />
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/epomeno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDiathesima" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

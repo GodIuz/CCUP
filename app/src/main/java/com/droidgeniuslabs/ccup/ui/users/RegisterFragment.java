@@ -3,12 +3,17 @@ package com.droidgeniuslabs.ccup.ui.users;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.droidgeniuslabs.ccup.R;
+import com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -18,9 +23,9 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.SignInButton;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.sql.SQLException;
 
 
 public class RegisterFragment extends Fragment {
@@ -47,7 +52,65 @@ public class RegisterFragment extends Fragment {
 
         LoginButton loginButton = view.findViewById(R.id.login_button);
         SignInButton signInButton = view.findViewById(R.id.sign_in_button);
+        Button registerButton = view.findViewById(R.id.buttonRegister);
+        EditText editTextFirst = view.findViewById(R.id.editTextFirstName);
+        EditText editTextLast = view.findViewById(R.id.editTextLastName);
+        EditText editTextEmail = view.findViewById(R.id.editTextEmailAddress);
+        EditText editTextPass = view.findViewById(R.id.editTextPassword);
+        EditText editTextConfirm = view.findViewById(R.id.editTextConfirmPassword);
+
         loginButton.setFragment(this);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String firstname = editTextFirst.getText().toString();
+                String lastname = editTextLast.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String pass = editTextPass.getText().toString();
+                String confirm = editTextConfirm.getText().toString();
+                DatabaseHelper databaseHelper = new DatabaseHelper();
+                if (!firstname.isEmpty()) {
+                  if(!lastname.isEmpty()) {
+                      if(!email.isEmpty()){
+                          if(!pass.isEmpty())
+                          {
+                              if(!confirm.isEmpty()) {
+                                  if (confirm.equals(pass)) {
+                                      try {
+                                          boolean result = databaseHelper.registerUser(firstname, lastname, email, pass);
+                                          if (result) {
+                                              Toast.makeText(getContext(), "User Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                              NavController navController = Navigation.findNavController(view);
+                                              navController.navigate(R.id.action_registerFragment_to_homeFragment);
+                                          } else {
+                                              Toast.makeText(getContext(), "Registration Failed!", Toast.LENGTH_SHORT).show();
+                                          }
+                                      } catch (SQLException e) {
+                                          throw new RuntimeException(e);
+                                      }
+                                  } else {
+                                      Toast.makeText(requireContext(), "Passwords did not match", Toast.LENGTH_SHORT).show();
+                                  }
+                              }else{
+                                  Toast.makeText(requireContext(), "Please fill this field",Toast.LENGTH_SHORT).show();
+                              }
+                          }else{
+                              editTextPass.setError("Password is required");
+                          }
+                      }else{
+                          editTextEmail.setError("Email is required.");
+                      }
+                  }else{
+                      editTextLast.setError("Last name is required.");
+                  }
+                }else{
+                 editTextFirst.setError("First name is required.");
+                }
+            }
+        });
+
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 

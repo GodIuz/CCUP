@@ -16,6 +16,8 @@ navigationUi = "2.8.1"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.0.0"
 playServicesAuth = "21.2.0"
+preference = "1.2.1"
+firebaseInappmessaging = "21.0.0"
 
 [libraries]
 credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
@@ -35,6 +37,8 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+firebase-inappmessaging = { group = "com.google.firebase", name = "firebase-inappmessaging", version.ref = "firebaseInappmessaging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

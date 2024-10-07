@@ -1,66 +1,68 @@
 package com.droidgeniuslabs.ccup.ui.isologismos;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import com.droidgeniuslabs.ccup.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link IsoTotalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class IsoTotalFragment extends Fragment {
+class IsoTotalFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private TextView textViewSummary;
+    private SharedViewModel sharedViewModel;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public IsoTotalFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IsoTotalFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static IsoTotalFragment newInstance(String param1, String param2) {
-        IsoTotalFragment fragment = new IsoTotalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_iso_total, container, false);
+
+        SharedViewModel sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        textViewSummary = view.findViewById(R.id.textViewSummary);
+        Button buttonBack = view.findViewById(R.id.buttonBack);
+        Button buttonFinish = view.findViewById(R.id.buttonFinish);
+
+        buttonBack.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.action_isoTotalFragment_to_liabilitiesIsoFragment);
+        });
+
+        buttonFinish.setOnClickListener(view1 -> {
+            submitData();
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.action_isoTotalFragment_to_homeFragment);
+        });
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_iso_total, container, false);
+    private void collectDataFromViewModel() {
+        sharedViewModel.getEditTextPagio().observe(getViewLifecycleOwner(), pagio -> appendToSummary("Pagio: " + pagio));
+        sharedViewModel.getEditTextApothema().observe(getViewLifecycleOwner(), apothema -> appendToSummary("Apothema: " + apothema));
+        sharedViewModel.getEditTextApaitiseis().observe(getViewLifecycleOwner(), apaitiseis -> appendToSummary("Apaitiseis: " + apaitiseis));
+        sharedViewModel.getEditTextDiathesima().observe(getViewLifecycleOwner(), diathesima -> appendToSummary("Diathesima: " + diathesima));
+        sharedViewModel.getEditTextKefalaia().observe(getViewLifecycleOwner(), kefalaia -> appendToSummary("Kefalaia: " + kefalaia));
+        sharedViewModel.getEditTextProvlepseis().observe(getViewLifecycleOwner(), provlepseis -> appendToSummary("Provlepseis: " + provlepseis));
+        sharedViewModel.getEditTextM_Ypo().observe(getViewLifecycleOwner(), m_ypo -> appendToSummary("Makroprothesmes Ypoxrewseis: " + m_ypo));
+        sharedViewModel.getEditTextB_Ypo().observe(getViewLifecycleOwner(), text4 -> appendToSummary("Braxyprothesmes Ypoxrewseis: " + text4));
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void appendToSummary(String data) {
+        String currentText = textViewSummary.getText().toString();
+        textViewSummary.setText(currentText + "\n" + data);
+    }
+    private void submitData() {
+        // Perform final action, like saving data to a database or making a server request
+        Toast.makeText(requireContext(), "Data submitted successfully!", Toast.LENGTH_SHORT).show();
     }
 }
