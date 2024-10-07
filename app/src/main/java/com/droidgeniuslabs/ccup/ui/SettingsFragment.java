@@ -1,4 +1,4 @@
-package com.droidgeniuslabs.ccup;
+package com.droidgeniuslabs.ccup.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import android.widget.Switch;
 import java.util.Locale;
 import android.content.res.Configuration;
 import android.widget.Toast;
+
+import com.droidgeniuslabs.ccup.R;
 
 public class SettingsFragment extends Fragment {
 

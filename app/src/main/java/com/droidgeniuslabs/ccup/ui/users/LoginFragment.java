@@ -1,11 +1,14 @@
 package com.droidgeniuslabs.ccup.ui.users;
 
+import static com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper.checkDatabaseConnection;
 import static com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper.isConnectedToInternet;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.droidgeniuslabs.ccup.dbhelper.AutoCompleteHelper;
 import com.droidgeniuslabs.ccup.dbhelper.DatabaseHelper;
-import com.droidgeniuslabs.ccup.dbhelper.SessionManager;
-import java.sql.SQLException;
 import com.droidgeniuslabs.ccup.R;
 
 
@@ -45,35 +45,24 @@ public class LoginFragment extends Fragment {
         TextView register = view.findViewById(R.id.textViewRegister);
         Button buttonLogin = view.findViewById(R.id.buttonLogin);
 
-        AutoCompleteHelper autoCompleteHelper = new AutoCompleteHelper(requireContext());
         DatabaseHelper databaseHelper = new DatabaseHelper();
-        SessionManager sessionManager = new SessionManager(requireContext());
+        boolean rememberMe = rememberCheckbox.isChecked();
 
-        if (sessionManager.isRemembered()) {
-            String savedUsername = sessionManager.getUsername();
-            if (savedUsername != null) {
-                editTextEmail.setText(savedUsername);
-                rememberCheckbox.setChecked(true);
-            }
-        }
 
         buttonLogin.setOnClickListener(v -> {
             String email = editTextEmail.getText().toString();
             String password = editTextPass.getText().toString();
             if(isConnectedToInternet(requireContext())) {
+                if(checkDatabaseConnection()){
                 if (!email.isEmpty()) {
                     if (!password.isEmpty()) {
-                        try {
-                            boolean result = databaseHelper.loginUser(email, password);
-                            if (result) {
-                                Toast.makeText(getContext(), "Login Successfully!", Toast.LENGTH_SHORT).show();
-                                NavController navController = Navigation.findNavController(view);
-                                navController.navigate(R.id.action_loginFragment_to_homeFragment);
-                            } else {
-                                Toast.makeText(getContext(), "Login Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
+                        boolean result = databaseHelper.loginUser(email, password,rememberMe);
+                        if (result) {
+                            Toast.makeText(getContext(), "Login Successfully!", Toast.LENGTH_SHORT).show();
+                            NavController navController = Navigation.findNavController(view);
+                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                        } else {
+                            Toast.makeText(getContext(), "Login Failed!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         editTextPass.setError("Password is required");
@@ -81,17 +70,17 @@ public class LoginFragment extends Fragment {
                 } else {
                     editTextEmail.setError("Email is required");
                 }
+                }else{
+                    Log.e("DatabaseError", "Error during login");
+                }
             }else{
                 Toast.makeText(requireContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_loginFragment_to_registerFragment);
-            }
+        register.setOnClickListener(view1 -> {
+            NavController navController = Navigation.findNavController(view1);
+            navController.navigate(R.id.action_loginFragment_to_registerFragment);
         });
         return view;
     }

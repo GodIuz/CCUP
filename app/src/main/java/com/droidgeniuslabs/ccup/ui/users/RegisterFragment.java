@@ -19,13 +19,10 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.SignInButton;
 import org.json.JSONException;
-import org.json.JSONObject;
-import java.sql.SQLException;
 
 
 public class RegisterFragment extends Fragment {
@@ -48,8 +45,6 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        CallbackManager callbackManager = CallbackManager.Factory.create();
-
         LoginButton loginButton = view.findViewById(R.id.login_button);
         SignInButton signInButton = view.findViewById(R.id.sign_in_button);
         Button registerButton = view.findViewById(R.id.buttonRegister);
@@ -61,52 +56,45 @@ public class RegisterFragment extends Fragment {
 
         loginButton.setFragment(this);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String firstname = editTextFirst.getText().toString();
-                String lastname = editTextLast.getText().toString();
-                String email = editTextEmail.getText().toString();
-                String pass = editTextPass.getText().toString();
-                String confirm = editTextConfirm.getText().toString();
-                DatabaseHelper databaseHelper = new DatabaseHelper();
-                if (!firstname.isEmpty()) {
-                  if(!lastname.isEmpty()) {
-                      if(!email.isEmpty()){
-                          if(!pass.isEmpty())
-                          {
-                              if(!confirm.isEmpty()) {
-                                  if (confirm.equals(pass)) {
-                                      try {
-                                          boolean result = databaseHelper.registerUser(firstname, lastname, email, pass);
-                                          if (result) {
-                                              Toast.makeText(getContext(), "User Registered Successfully!", Toast.LENGTH_SHORT).show();
-                                              NavController navController = Navigation.findNavController(view);
-                                              navController.navigate(R.id.action_registerFragment_to_homeFragment);
-                                          } else {
-                                              Toast.makeText(getContext(), "Registration Failed!", Toast.LENGTH_SHORT).show();
-                                          }
-                                      } catch (SQLException e) {
-                                          throw new RuntimeException(e);
-                                      }
+        registerButton.setOnClickListener(view1 -> {
+            String firstname = editTextFirst.getText().toString();
+            String lastname = editTextLast.getText().toString();
+            String email = editTextEmail.getText().toString();
+            String pass = editTextPass.getText().toString();
+            String confirm = editTextConfirm.getText().toString();
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            if (!firstname.isEmpty()) {
+              if(!lastname.isEmpty()) {
+                  if(!email.isEmpty()){
+                      if(!pass.isEmpty())
+                      {
+                          if(!confirm.isEmpty()) {
+                              if (confirm.equals(pass)) {
+                                  boolean result = DatabaseHelper.registerUser(firstname, lastname, email, pass);
+                                  if (result) {
+                                      Toast.makeText(getContext(), "User Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                      NavController navController = Navigation.findNavController(view1);
+                                      navController.navigate(R.id.action_registerFragment_to_homeFragment);
                                   } else {
-                                      Toast.makeText(requireContext(), "Passwords did not match", Toast.LENGTH_SHORT).show();
+                                      Toast.makeText(getContext(), "Registration Failed!", Toast.LENGTH_SHORT).show();
                                   }
-                              }else{
-                                  Toast.makeText(requireContext(), "Please fill this field",Toast.LENGTH_SHORT).show();
+                              } else {
+                                  Toast.makeText(requireContext(), "Passwords did not match", Toast.LENGTH_SHORT).show();
                               }
                           }else{
-                              editTextPass.setError("Password is required");
+                              Toast.makeText(requireContext(), "Please fill this field",Toast.LENGTH_SHORT).show();
                           }
                       }else{
-                          editTextEmail.setError("Email is required.");
+                          editTextPass.setError("Password is required");
                       }
                   }else{
-                      editTextLast.setError("Last name is required.");
+                      editTextEmail.setError("Email is required.");
                   }
-                }else{
-                 editTextFirst.setError("First name is required.");
-                }
+              }else{
+                  editTextLast.setError("Last name is required.");
+              }
+            }else{
+             editTextFirst.setError("First name is required.");
             }
         });
 
@@ -129,18 +117,15 @@ public class RegisterFragment extends Fragment {
                 // You can also retrieve user info here
                 GraphRequest request = GraphRequest.newMeRequest(
                         accessToken,
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                try {
-                                    String name = object.getString("name");
-                                    String email = object.getString("email");
-                                    String facebookId = object.getString("id");
-                                    Log.d("FacebookLogin", "User Info: Name=" + name + ", Email=" + email + ", ID=" + facebookId);
-                                    // Handle user data (store in database or preferences)
-                                } catch (JSONException e) {
-                                    Log.e("FacebookLogin", "Error parsing user info: " + e.getMessage());
-                                }
+                        (object, response) -> {
+                            try {
+                                String name = object.getString("name");
+                                String email = object.getString("email");
+                                String facebookId = object.getString("id");
+                                Log.d("FacebookLogin", "User Info: Name=" + name + ", Email=" + email + ", ID=" + facebookId);
+                                // Handle user data (store in database or preferences)
+                            } catch (JSONException e) {
+                                Log.e("FacebookLogin", "Error parsing user info: " + e.getMessage());
                             }
                         });
 
