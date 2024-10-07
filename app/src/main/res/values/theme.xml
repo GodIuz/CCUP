@@ -1,9 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CCUP" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!-- res/values/styles.xml -->
+<resources>
+    <style name="Theme.App.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Light theme settings -->
     </style>
 
-    <style name="Theme.CCUP" parent="Base.Theme.CCUP" />
+    <style name="Theme.App.Dark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Dark theme settings -->
+    </style>
 </resources>

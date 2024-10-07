@@ -9,81 +9,89 @@
 
     <!-- Language selection -->
 
+
     <TextView
         android:id="@+id/tvLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:text="@string/select_language"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Spinner
         android:id="@+id/spinnerLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="264dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:entries="@array/language_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLanguage"
-        android:layout_marginStart="16dp"
-        android:entries="@array/language_options"/>
-
-    <!-- Dark/Light Mode toggle -->
-    <TextView
-        android:id="@+id/tvTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_theme"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerLanguage"
-        android:layout_margin="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
 
     <Switch
         android:id="@+id/switchTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:minHeight="48dp"
+        android:layout_width="367dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="20dp"
         android:text="@string/dark_mode"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTheme"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLanguage"
+        tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
 
-    <!-- Notifications toggle -->
     <TextView
         android:id="@+id/tvNotifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/notifications"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/switchTheme"
-        android:layout_margin="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/switchTheme" />
 
     <Switch
         android:id="@+id/switchNotifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:minHeight="48dp"
+        android:layout_width="278dp"
+        android:layout_height="48dp"
         android:text="@string/enable_notifications"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNotifications"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNotifications"
+        tools:ignore="UseSwitchCompatOrMaterialXml,TextSizeCheck" />
 
-    <!-- Report Bug button -->
     <Button
         android:id="@+id/btnReportBug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="72dp"
         android:text="@string/report_a_bug"
+        android:drawableEnd="@drawable/ic_report_bug"
+        android:fillColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/switchNotifications" />
+        app:layout_constraintTop_toBottomOf="@+id/switchNotifications" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/settings"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
