@@ -1,4 +1,5 @@
 [versions]
+achartengine = "1.2.0"
 agp = "8.5.0"
 credentials = "<latest version>"
 facebookFacebookAndroidSdk = "17.0.2"
@@ -11,6 +12,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.2"
 constraintlayout = "2.1.4"
+mpandroidchartVersion = "v3.1.0"
 navigationFragment = "2.8.1"
 navigationUi = "2.8.1"
 googleGmsGoogleServices = "4.4.2"
@@ -18,8 +20,13 @@ firebaseAuth = "23.0.0"
 playServicesAuth = "21.2.0"
 preference = "1.2.1"
 firebaseInappmessaging = "21.0.0"
+playServicesAds = "23.4.0"
+legacySupportV4 = "1.0.0"
+lifecycleLivedataKtx = "2.8.6"
+lifecycleViewmodelKtx = "2.8.6"
 
 [libraries]
+achartengine = { module = "org.achartengine:achartengine", version.ref = "achartengine" }
 credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
 facebook-facebook-android-sdk = { module = "com.facebook.android:facebook-android-sdk", version.ref = "facebookFacebookAndroidSdk" }
@@ -36,9 +43,14 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+philjay-mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchartVersion" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 firebase-inappmessaging = { group = "com.google.firebase", name = "firebase-inappmessaging", version.ref = "firebaseInappmessaging" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

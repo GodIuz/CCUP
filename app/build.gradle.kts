@@ -9,7 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.droidgeniuslabs.ccup"
-        minSdk = 24
+        minSdk = 21
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -47,6 +48,11 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.preference)
     implementation(libs.firebase.inappmessaging)
+    implementation(libs.play.services.ads)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation("com.robinhood.spark:spark:1.2.0")
     testImplementation(libs.junit)
     implementation(libs.facebook.facebook.android.sdk)
     androidTestImplementation(libs.ext.junit)

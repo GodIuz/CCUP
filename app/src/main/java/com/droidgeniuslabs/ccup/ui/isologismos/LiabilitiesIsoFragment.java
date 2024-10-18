@@ -10,7 +10,6 @@ import android.widget.EditText;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import com.droidgeniuslabs.ccup.R;
 
 public class LiabilitiesIsoFragment extends Fragment {

@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.Toast;
+import com.droidgeniuslabs.ccup.ui.finacialdata.FinancialData;
+import com.droidgeniuslabs.ccup.ui.finacialdata.FinancialDataViewModel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -161,4 +163,46 @@ public class DatabaseHelper {
             }
         }
     }
+
+    public void storeFinancialData(FinancialDataViewModel financialDataViewModel) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+            // Prepare the SQL insert query
+            String query = "INSERT INTO FinancialData (user_id, month, revenue, expenses, profit_loss, revenue_growth, expenses_growth, customer_count, sales_per_product) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, financialDataViewModel.getEditTextMonth().getValue());
+            preparedStatement.setFloat(2, financialDataViewModel.getEditTextRevenue().getValue().floatValue());
+            preparedStatement.setFloat(3, financialDataViewModel.getEditTextExpenses().getValue().floatValue());
+            preparedStatement.setFloat(4, financialDataViewModel.getEditTextProfitLoss().getValue().floatValue());
+            preparedStatement.setFloat(5, financialDataViewModel.getEditTextRevenueGrowth().getValue().floatValue());
+            preparedStatement.setFloat(6, financialDataViewModel.getEditTextNumberExpensesGrowth().getValue().floatValue());
+            preparedStatement.setInt(7, financialDataViewModel.getEditTextCustomerCount().getValue().intValue());
+            preparedStatement.setFloat(8, financialDataViewModel.getEditTextSalesPerProduct().getValue().floatValue());
+
+            // Execute the insert statement
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
